@@ -1,4 +1,4 @@
-# oraclejet-tooling 1.1.0
+# oraclejet-tooling 1.1.1
 
 ## About the tooling API
 This oraclejet-tooling API contains methods to build and serve oraclejet hybrid and web apps. It is supposed to be used with task running tools such as grunt or gulp. The APIs can also be invoked directly. 
