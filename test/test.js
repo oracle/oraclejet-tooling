@@ -4,7 +4,7 @@
 */
 var env = process.env,
     assert = require('assert'),
-    ojet = require('oraclejet-tooling'), 
+    ojet = require('../oraclejet-tooling'), 
     _ = require('lodash'), 
     path = require('path');
 

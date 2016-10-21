@@ -257,11 +257,12 @@ function _addLiveReloadElement(content, platform)
  *
  * @private
  * @param {string} content   - original content
+ * @param {string} category  - category of rules
  * @param {string} cspRule   - Content Security Policy rules
  * @returns {string} content - updated content
  */
 
-function _injectCspRule(content, cspRule)
+function _injectCspRule(content, category, cspRule)
 {
   var newContent = content;
   var newCspTag;
@@ -280,7 +281,7 @@ function _injectCspRule(content, cspRule)
     // no content attribute, do nothing
     return content;
   }
-  var pattern = new RegExp('script-src([^;]*)', 'gi');
+  var pattern = new RegExp(category + '([^;]*)', 'gi');
   var result = pattern.exec(contentAttrValue);
   if (result)
   {
@@ -290,7 +291,7 @@ function _injectCspRule(content, cspRule)
   }
   else
   {
-    newScriptSrc = "; script-src " + cspRule;
+    newScriptSrc = "; " + category + " " + cspRule;
     contentAttrValue += newScriptSrc;
   }
   newCspTag = _setXmlAttrValue(cspTag, "content", contentAttrValue);
@@ -326,7 +327,10 @@ function _updateCspForLiveReload(content, platform)
     liveReloadSrc = "http://" + _getLocalIpAddress(platform) + ":" + liveReloadPort;
   }
 
-  newContent = _injectCspRule(content, liveReloadSrc);
+  newContent = _injectCspRule(newContent, 'script-src', liveReloadSrc);
+
+  // Must have for iOS10
+  newContent = _injectCspRule(newContent, 'connect-src', 'ws: *');
 
   return newContent;
 }

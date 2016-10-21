@@ -9,7 +9,7 @@ process.env = 'test';
 const CONSTANTS = require('../lib/constants');
 let fs = require('fs');
 let assert = require('assert');
-let ojet = require('oraclejet-tooling');
+let ojet = require('../oraclejet-tooling');
 
 let cordovaDir = CONSTANTS.CORDOVA_DIRECTORY;
 

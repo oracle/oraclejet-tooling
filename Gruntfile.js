@@ -16,9 +16,9 @@ module.exports = function (grunt) {
       src : "build/*.js"
     },
     pkg: grunt.file.readJSON("package.json"),
-    jet_version_token:'1.1.1',
+    jet_version_token:'2.2.0',
     jet_doc_version_token:'undefined',
-    version_token:'1.1.1'
+    version_token:'2.2.0'
   }
   var configs = require('load-grunt-configs')(grunt, options);
   grunt.config.merge(configs);

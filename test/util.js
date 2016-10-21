@@ -4,8 +4,7 @@
 */
 var env = process.env,
     assert = require('assert'),
-    ojet = require('oraclejet-tooling'), 
-    _ = require('underscore'), 
+    ojet = require('../oraclejet-tooling'),
     path = require('path');
 
 describe("Util Test", function ()
