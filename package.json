@@ -1,8 +1,8 @@
 {
   "name": "oraclejet-tooling",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "license": "UPL-1.0",
-  "description": "Oraclejet tooling proggramatic API to build and serve mobile and web applications based on Oracle JET",
+  "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
     "oraclejet"
   ],
@@ -13,20 +13,20 @@
     "lib"
   ],
   "dependencies": {
-    "fs-extra": "0.30.0",
-    "glob": "7.0.4",
+    "fs-extra": "^1.0.0",
+    "glob": "^7.1.1",
     "grunt": "^0.4.5",
-    "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-watch": "^1.0.0",
-    "lodash.difference": "^4.3.0",
-    "lodash.escaperegexp": "^4.1.1",
+    "lodash.difference": "^4.5.0",
+    "lodash.escaperegexp": "^4.1.2",
     "lodash.isfunction": "^3.0.8",
-    "lodash.remove": "^4.5.0",
-    "lodash.union": "^4.4.0",
-    "lodash.mergewith": "^4.5.0",
+    "lodash.remove": "^4.7.0",
+    "lodash.union": "^4.6.0",
+    "lodash.mergewith": "^4.6.0",
     "requirejs": "^2.2.0",
-    "uglify-js": "^2.6.3",
-    "xmldom": "^0.1.22"
+    "uglify-js": "^2.7.4",
+    "xmldom": "^0.1.27"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -35,7 +35,8 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "load-grunt-configs": "^0.4.3",
-    "load-grunt-tasks": "3.5.0"      
-  }
+    "load-grunt-configs": "^1.0.0",
+    "load-grunt-tasks": "^3.5.2"      
+  },
+  "jetdocversion": "230"
 }

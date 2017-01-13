@@ -1,5 +1,5 @@
 /**
-  Copyright (c) 2015, 2016, Oracle and/or its affiliates.
+  Copyright (c) 2015, 2017, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
 module.exports = function (grunt) {
@@ -16,9 +16,11 @@ module.exports = function (grunt) {
       src : "build/*.js"
     },
     pkg: grunt.file.readJSON("package.json"),
-    jet_version_token:'2.2.0',
-    jet_doc_version_token:'undefined',
-    version_token:'2.2.0'
+    build_urls: grunt.file.readJSON("buildconf.json"),
+    jet_version_token:'2.3.0',
+    jet_doc_version_token:'230',
+    version_token:'2.3.0',
+    current_year_token: '2017'
   }
   var configs = require('load-grunt-configs')(grunt, options);
   grunt.config.merge(configs);
