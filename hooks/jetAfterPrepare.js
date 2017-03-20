@@ -3,37 +3,36 @@
   Copyright (c) 2015, 2017, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
+
 'use strict';
 
 /**
  * Jet after_prepare hook.
  * Please do not modify.
- * In case you need some after_prepare functionality, please follow Cordova documentation and create another hook.
+ * In case you need some after_prepare functionality,
+ * please follow Cordova documentation and create another hook.
  */
 
 /**
  * # Dependencies
  */
 
-var injector = require("./jetInjector");
+const injector = require('./jetInjector');
 
 /**
  * # After prepare hook
- * 
- * @public 
+ *
+ * @public
  */
 
-module.exports = function(context)
-{
-  var platforms = context.opts.platforms;
+module.exports = function (context) {
+  const platforms = context.opts.platforms;
 
-  if (platforms)
-  {
-    platforms.forEach(function(value)
-      {
-        injector.updateIndexHtml(value);
-        injector.updateConfigXml(value);
-      }
+  if (platforms) {
+    platforms.forEach((value) => {
+      injector.updateIndexHtml(value);
+      injector.updateConfigXml(value);
+    }
     );
   }
 };

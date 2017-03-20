@@ -1,6 +1,6 @@
 {
   "name": "oraclejet-tooling",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -15,9 +15,6 @@
   "dependencies": {
     "fs-extra": "^1.0.0",
     "glob": "^7.1.1",
-    "grunt": "^0.4.5",
-    "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-watch": "^1.0.0",
     "lodash.difference": "^4.5.0",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.isfunction": "^3.0.8",
@@ -26,17 +23,26 @@
     "lodash.mergewith": "^4.6.0",
     "requirejs": "^2.2.0",
     "uglify-js": "^2.7.4",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.1.27",
+    "gaze": "^1.1.2",
+    "connect": "^3.5.0",
+    "connect-livereload": "^0.6.0",
+    "tiny-lr": "^1.0.3",
+    "serve-static": "^1.11.1",
+    "serve-index": "^1.8.0",
+    "opn": "^4.0.2"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "devDependencies": {
+    "eslint": "^3.11.0",
+    "grunt-eslint": "^19.0.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "load-grunt-configs": "^1.0.0",
-    "load-grunt-tasks": "^3.5.2"      
+    "load-grunt-tasks": "^3.5.2"
   },
-  "jetdocversion": "230"
+  "jetdocversion": "300"    
 }

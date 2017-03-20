@@ -7,7 +7,8 @@
 /**
  * Jet after_prepare hook.
  * Please do not modify.
- * In case you need some after_prepare functionality, please follow Cordova documentation and create another hook.
+ * In case you need some after_prepare functionality,
+ * please follow Cordova documentation and create another hook.
  */
 
 /**
@@ -15,13 +16,13 @@
  */
 
 /* Node.js native */
-const fs = require("fs");
+const fs = require('fs');
 const path = require('path');
 
 /* Constants */
-const LOCAL_IP_ADDRESS = "127.0.0.1";
-const ANDROID_LOCAL_IP_ADDRESS = "10.0.2.2";
-const LOAD_URL_TIMEOUT_VALUE = "loadUrlTimeoutValue";
+const LOCAL_IP_ADDRESS = '127.0.0.1';
+const ANDROID_LOCAL_IP_ADDRESS = '10.0.2.2';
+const LOAD_URL_TIMEOUT_VALUE = 'loadUrlTimeoutValue';
 
 /**
  * # After prepare hook injector API
@@ -40,31 +41,25 @@ module.exports =
    * @param {boolean} external
    */
 
-  updateIndexHtml: function(platform, external)
-  {
-    var indexHtmlPath = _getIndexHtmlPath(platform, external);
-    var content;
+  updateIndexHtml(platform, external) {
+    const indexHtmlPath = _getIndexHtmlPath(platform, external);
+    let content;
 
-    if (!indexHtmlPath)
-    {
+    if (!indexHtmlPath) {
       return;
     }
 
-    try
-    {
-      content = fs.readFileSync(indexHtmlPath, "utf-8");
+    try {
+      content = fs.readFileSync(indexHtmlPath, 'utf-8');
 
       content = _addPlatformStyleClasses(content, platform);
-      if (_isLiveReloadEnabled())
-      {
+      if (_isLiveReloadEnabled()) {
         content = _updateCspForLiveReload(content, platform);
         content = _addLiveReloadElement(content, platform);
       }
       fs.writeFileSync(indexHtmlPath, content);
-    }
-    catch (e)
-    {
-      console.log('Error:' + e)
+    } catch (e) {
+      console.log(`Error:${e}`);
     }
   },
 
@@ -76,32 +71,25 @@ module.exports =
    * @param {string} platform
    */
 
-  updateConfigXml: function(platform)
-  {
-    var document;
-    var configXml = _getConfigXmlPath(platform);
-    if (!configXml)
-    {
+  updateConfigXml(platform) {
+    let document;
+    const configXml = _getConfigXmlPath(platform);
+    if (!configXml) {
       return;
     }
 
-    try
-    {
-      document = fs.readFileSync(configXml, "utf-8");
-      if (_isLiveReloadEnabled())
-      {
-        if (process.env["platform"] && process.env["port"] && process.env["destination"]) {
+    try {
+      document = fs.readFileSync(configXml, 'utf-8');
+      if (_isLiveReloadEnabled()) {
+        if (process.env.platform && process.env.port && process.env.destination) {
           document = _processConfigSrcAttribute(document);
           document = _addNavigationPermission(document);
         }
       }
       document = _addLoadUrlTimeoutPreference(document);
       fs.writeFileSync(configXml, document);
-    }
-    catch (e)
-    {
-      console.log('Error:' + e);
-      return;
+    } catch (e) {
+      console.log(`Error:${e}`);
     }
   }
 };
@@ -116,35 +104,25 @@ module.exports =
  * @returns {string || null} indexHtmlPath
  */
 
-function _getIndexHtmlPath(platform, external)
-{
-  var indexHtmlPath;
-  var root;
-  var prefix = external ? process.env['cordovaDirectory'] + '/' : "";
+function _getIndexHtmlPath(platform, external) {
+  let indexHtmlPath;
+  let root;
+  const prefix = external ? `${process.env.cordovaDirectory}/` : '';
 
-  if (platform === "android")
-  {
-    root = prefix + "platforms/android/assets/www/";
-  }
-  else if (platform === "ios")
-  {
-    root = prefix + "platforms/ios/www/";
-  }
-  else if (platform === "windows")
-  {
-    root = prefix + "platforms/windows/www/";
-  }
-  else if (platform === "browser")
-  {
-    root = prefix + "platforms/browser/www/";
-  }
-  else {
+  if (platform === 'android') {
+    root = `${prefix}platforms/android/assets/www/`;
+  } else if (platform === 'ios') {
+    root = `${prefix}platforms/ios/www/`;
+  } else if (platform === 'windows') {
+    root = `${prefix}platforms/windows/www/`;
+  } else if (platform === 'browser') {
+    root = `${prefix}platforms/browser/www/`;
+  } else {
     return null;
   }
 
-  if (root)
-  {
-    indexHtmlPath = path.resolve(root, "index.html");
+  if (root) {
+    indexHtmlPath = path.resolve(root, 'index.html');
   }
 
   return indexHtmlPath;
@@ -160,33 +138,29 @@ function _getIndexHtmlPath(platform, external)
  * @returns {string} newContent - Updated content
  */
 
-function _addPlatformStyleClasses(content, platform)
-{
-  var bodyTag;
-  var classAttrValue;
-  var newBodyTag;
-  var newContent = content;
-  var classesToAdd = ['oj-hybrid', 'oj-platform-cordova'];
-  
+function _addPlatformStyleClasses(content, platform) {
+  let classAttrValue;
+  let newBodyTag;
+  let newContent = content;
+  const classesToAdd = ['oj-hybrid', 'oj-platform-cordova'];
+  let actualPlatform = platform;
+
   // if serving in the browser, pick up the actual platform from env
-  if (platform === 'browser')
-  {
-    platform = process.env['platform'];
+  if (actualPlatform === 'browser') {
+    actualPlatform = process.env.platform;
   }
 
-  bodyTag = _getXmlTag(content, 'body');
-  if (bodyTag)
-  {
+  const bodyTag = _getXmlTag(content, 'body');
+  if (bodyTag) {
     classAttrValue = _getXmlAttrValue(bodyTag, 'class') || '';
-    classesToAdd.push('oj-platform-' + platform);
+    classesToAdd.push(`oj-platform-${actualPlatform}`);
 
-    if (platform === 'ios')
-    {
+    if (actualPlatform === 'ios') {
       classesToAdd.push('oj-hybrid-statusbar-spacer');
     }
-    
+
     classAttrValue = _addPlatformStyleClassesIfMissing(classAttrValue, classesToAdd);
-    
+
     newBodyTag = _setXmlAttrValue(bodyTag, 'class', classAttrValue);
     newContent = content.replace(bodyTag, newBodyTag);
   }
@@ -196,21 +170,17 @@ function _addPlatformStyleClasses(content, platform)
 /**
  * ## _addPlatformStyleClassIfMissing
  * appends a new marker class to the provided class attribute value
- * 
+ *
  * @param {string} classStr            - original class attribute value
  * @param {Array|string} classesToAdd  - new marker class to be added
  * @returns {string}                   - an updated class attribute value
  */
-function _addPlatformStyleClassesIfMissing(classStr, classesToAdd)
-{
-  var classes = (classesToAdd instanceof Array) ? classesToAdd : [ classesToAdd ];
-  
-  for (var i = 0; i < classes.length; i++)
-  {
-    if (classStr.indexOf(classes[i]) < 0)
-    {
-      if (classStr.length > 0)
-      {
+function _addPlatformStyleClassesIfMissing(classStr, classesToAdd) {
+  const classes = (classesToAdd instanceof Array) ? classesToAdd : [classesToAdd];
+
+  for (let i = 0; i < classes.length; i++) {
+    if (classStr.indexOf(classes[i]) < 0) {
+      if (classStr.length > 0) {
         classStr += ' ';
       }
       classStr += classes[i];
@@ -229,25 +199,21 @@ function _addPlatformStyleClassesIfMissing(classStr, classesToAdd)
  * @returns {string} newContent - Updated content
  */
 
-function _addLiveReloadElement(content, platform)
-{
-  var newContent = content;
-  var liveReloadPort = process.env["livereloadPort"] || 35729;
-  var destination = process.env["destination"];
+function _addLiveReloadElement(content, platform) {
+  let newContent = content;
+  const liveReloadPort = process.env.livereloadPort || 35729;
+  const destination = process.env.destination;
 
-  var liveReloadSrc = '';
-  if (destination === 'browser')
-  {
-    liveReloadSrc = "http://localhost:" + liveReloadPort + "/livereload.js";
+  let liveReloadSrc = '';
+  if (destination === 'browser') {
+    liveReloadSrc = `http://localhost:${liveReloadPort}/livereload.js`;
+  } else {
+    liveReloadSrc = `http://${_getLocalIpAddress(platform)}:${liveReloadPort}/livereload.js`;
   }
-  else
-  {
-    liveReloadSrc = "http://" + _getLocalIpAddress(platform) + ":" + liveReloadPort + "/livereload.js";
-  }
-  
-  var scriptTag = '<script type="text/javascript" src="' + liveReloadSrc + '"></script>';
 
-  newContent = content.replace("</body>", "  " + scriptTag + "\n  </body>");
+  const scriptTag = `<script type="text/javascript" src="${liveReloadSrc}"></script>`;
+
+  newContent = content.replace('</body>', `  ${scriptTag}\n  </body>`);
   return newContent;
 }
 
@@ -262,39 +228,32 @@ function _addLiveReloadElement(content, platform)
  * @returns {string} content - updated content
  */
 
-function _injectCspRule(content, category, cspRule)
-{
-  var newContent = content;
-  var newCspTag;
-  var scriptSrc;
-  var newScriptSrc;
-  var cspTag = _getXmlTagWithAttrValue(content, "meta", "http-equiv", "Content-Security-Policy");
+function _injectCspRule(content, category, cspRule) {
+  let newContent = content;
+  let scriptSrc;
+  let newScriptSrc;
+  const cspTag = _getXmlTagWithAttrValue(content, 'meta', 'http-equiv', 'Content-Security-Policy');
 
-  if (!cspTag)
-  {
+  if (!cspTag) {
     // CSP meta tag not found, do nothing
     return content;
   }
-  var contentAttrValue = _getXmlAttrValue(cspTag, "content");
-  if (!contentAttrValue)
-  {
+  let contentAttrValue = _getXmlAttrValue(cspTag, 'content');
+  if (!contentAttrValue) {
     // no content attribute, do nothing
     return content;
   }
-  var pattern = new RegExp(category + '([^;]*)', 'gi');
-  var result = pattern.exec(contentAttrValue);
-  if (result)
-  {
+  const pattern = new RegExp(`${category}([^;]*)`, 'gi');
+  const result = pattern.exec(contentAttrValue);
+  if (result) {
     scriptSrc = result[0];
-    newScriptSrc = scriptSrc + " " + cspRule;
+    newScriptSrc = `${scriptSrc} ${cspRule}`;
     contentAttrValue = contentAttrValue.replace(scriptSrc, newScriptSrc);
-  }
-  else
-  {
-    newScriptSrc = "; " + category + " " + cspRule;
+  } else {
+    newScriptSrc = `; ${category} ${cspRule}`;
     contentAttrValue += newScriptSrc;
   }
-  newCspTag = _setXmlAttrValue(cspTag, "content", contentAttrValue);
+  const newCspTag = _setXmlAttrValue(cspTag, 'content', contentAttrValue);
   newContent = content.replace(cspTag, newCspTag);
 
   return newContent;
@@ -310,27 +269,24 @@ function _injectCspRule(content, category, cspRule)
  * @returns {string} newContent - Updated content
  */
 
-function _updateCspForLiveReload(content, platform)
-{
-  var newContent = content;
-  var liveReloadPort = process.env["livereloadPort"];
-  var destination = process.env["destination"];
-  
-  var liveReloadSrc = '';
-  
-  if (destination === 'browser')
-  {
-    liveReloadSrc = "http://localhost:" + liveReloadPort;
-  }
-  else
-  {
-    liveReloadSrc = "http://" + _getLocalIpAddress(platform) + ":" + liveReloadPort;
+function _updateCspForLiveReload(content, platform) {
+  let newContent = content;
+  const liveReloadPort = process.env.livereloadPort;
+  const destination = process.env.destination;
+
+  let liveReloadSrc = '';
+
+  if (destination === 'browser') {
+    liveReloadSrc = `http://localhost:${liveReloadPort}`;
+  } else {
+    liveReloadSrc = `http://${_getLocalIpAddress(platform)}:${liveReloadPort}`;
   }
 
   newContent = _injectCspRule(newContent, 'script-src', liveReloadSrc);
 
   // Must have for iOS10
   newContent = _injectCspRule(newContent, 'connect-src', 'ws: *');
+  newContent = _injectCspRule(newContent, 'default-src', 'gap://ready');
 
   return newContent;
 }
@@ -343,32 +299,22 @@ function _updateCspForLiveReload(content, platform)
  * @returns {string || null}
  */
 
-function _getConfigXmlPath(platform)
-{
-  var configXmlPath;
+function _getConfigXmlPath(platform) {
+  let configXmlPath;
 
-  if (platform === "android")
-  {
-    configXmlPath = "platforms/android/res/xml";
-  }
-  else if (platform === "ios")
-  {
-    configXmlPath = "platforms/ios/" + _getAppName();
-  }
-  else if (platform === "windows")
-  {
-    configXmlPath = "platforms/windows";
-  }
-  else if (platform === "browser")
-  {
-    configXmlPath = "platforms/browser";
-  }
-  else
-  {
+  if (platform === 'android') {
+    configXmlPath = 'platforms/android/res/xml';
+  } else if (platform === 'ios') {
+    configXmlPath = `platforms/ios/${_getAppName()}`;
+  } else if (platform === 'windows') {
+    configXmlPath = 'platforms/windows';
+  } else if (platform === 'browser') {
+    configXmlPath = 'platforms/browser';
+  } else {
     return null;
   }
 
-  return path.resolve(configXmlPath, "config.xml");
+  return path.resolve(configXmlPath, 'config.xml');
 }
 
 /**
@@ -379,11 +325,10 @@ function _getConfigXmlPath(platform)
  * @returns {string} name - Application name
  */
 
-function _getAppName()
-{
-  var configXml = path.resolve("config.xml");
-  var document = fs.readFileSync(configXml, "utf-8");
-  var name = _getXmlNodeText(document, "name");
+function _getAppName() {
+  const configXml = path.resolve('config.xml');
+  const document = fs.readFileSync(configXml, 'utf-8');
+  const name = _getXmlNodeText(document, 'name');
 
   return name;
 }
@@ -397,29 +342,25 @@ function _getAppName()
  * @returns {string} newDocument - Updated content
  */
 
-function _processConfigSrcAttribute(document)
-{
-  var newDocument = document;
+function _processConfigSrcAttribute(document) {
+  let newDocument = document;
 
   // need to update the config src for livereloading
-  var platform = process.env["platform"];
-  var destination = process.env["destination"];
-  var serverPort = process.env["port"];
-  var newSrcValue = '';
+  const platform = process.env.platform;
+  const destination = process.env.destination;
+  const serverPort = process.env.port;
+  let newSrcValue = '';
 
   // due to how emulator/devices work; localhost does not point to your
   // laptop and etc but its internal one, need to use ip address
-  if (destination === 'browser')
-  {
-    newSrcValue = "http://localhost:" + serverPort + "/browser/www/index.html";
-  }
-  else
-  {
-    newSrcValue = "http://" + _getLocalIpAddress(platform) + ":" + serverPort + "/" + platform + "/www/index.html";
+  if (destination === 'browser') {
+    newSrcValue = `http://localhost:${serverPort}/browser/www/index.html`;
+  } else {
+    newSrcValue = `http://${_getLocalIpAddress(platform)}:${serverPort}/${platform}/www/index.html`;
   }
 
-  var contentTag = _getXmlTag(document, "content");
-  var newContentTag = _setXmlAttrValue(contentTag, "src", newSrcValue);
+  const contentTag = _getXmlTag(document, 'content');
+  const newContentTag = _setXmlAttrValue(contentTag, 'src', newSrcValue);
 
   newDocument = document.replace(contentTag, newContentTag);
   return newDocument;
@@ -433,26 +374,21 @@ function _processConfigSrcAttribute(document)
  * @returns {string} newDocument - Updated content
  */
 
-function _addLoadUrlTimeoutPreference(document)
-{
-  var newDocument = document;
-  var newPreferenceTag;
-  var contentTag;
-  var preferenceTag = _getXmlTagWithAttrValue(document, "preference", "name", LOAD_URL_TIMEOUT_VALUE);
+function _addLoadUrlTimeoutPreference(document) {
+  let newDocument = document;
+  let newPreferenceTag;
+  let contentTag;
+  const preferenceTag = _getXmlTagWithAttrValue(document, 'preference', 'name', LOAD_URL_TIMEOUT_VALUE);
 
-  if (preferenceTag)
-  {
-    newPreferenceTag = _setXmlAttrValue(preferenceTag, "value", "700000");
+  if (preferenceTag) {
+    newPreferenceTag = _setXmlAttrValue(preferenceTag, 'value', '700000');
     newDocument = document.replace(preferenceTag, newPreferenceTag);
-  }
-  else
-  {
-    // loadUrlTimeoutValue preference tag does not exist yet, 
+  } else {
+    // loadUrlTimeoutValue preference tag does not exist yet,
     // append it after the content tag
-    contentTag = _getXmlTag(document, "content");
-    if (contentTag)
-    {
-      newPreferenceTag = contentTag + '\n    <preference name="' + LOAD_URL_TIMEOUT_VALUE + '" value="700000" />';
+    contentTag = _getXmlTag(document, 'content');
+    if (contentTag) {
+      newPreferenceTag = `${contentTag}\n    <preference name="${LOAD_URL_TIMEOUT_VALUE}" value="700000" />`;
       newDocument = document.replace(contentTag, newPreferenceTag);
     }
   }
@@ -468,16 +404,14 @@ function _addLoadUrlTimeoutPreference(document)
  * @returns {string} newDocument - Updated content
  */
 
-function _addNavigationPermission(document)
-{
+function _addNavigationPermission(document) {
   // need to update the config src for livereloading
-  var newDocument = document;
-  var platform = process.env["platform"];
-  var contentTag = _getXmlTag(document, "content");
+  let newDocument = document;
+  const platform = process.env.platform;
+  const contentTag = _getXmlTag(document, 'content');
 
-  if (contentTag)
-  {
-    var newAllowTag = contentTag + '\n    <allow-navigation href="http://' + _getLocalIpAddress(platform) + '/*" />';
+  if (contentTag) {
+    const newAllowTag = `${contentTag}\n    <allow-navigation href="http://${_getLocalIpAddress(platform)}/*" />`;
     newDocument = document.replace(contentTag, newAllowTag);
   }
 
@@ -491,10 +425,9 @@ function _addNavigationPermission(document)
  * @returns {boolean}
  */
 
-function _isLiveReloadEnabled()
-{
-  var liveReloadEnabled = process.env["livereload"];
-  return (liveReloadEnabled !== "false" && liveReloadEnabled !== undefined);
+function _isLiveReloadEnabled() {
+  const liveReloadEnabled = process.env.livereload;
+  return (liveReloadEnabled !== 'false' && liveReloadEnabled !== undefined);
 }
 
 /**
@@ -505,9 +438,8 @@ function _isLiveReloadEnabled()
  * @returns {string}        - IP address
  */
 
-function _getLocalIpAddress(platform)
-{
-  return (platform === "android") ? ANDROID_LOCAL_IP_ADDRESS : LOCAL_IP_ADDRESS;
+function _getLocalIpAddress(platform) {
+  return (platform === 'android') ? ANDROID_LOCAL_IP_ADDRESS : LOCAL_IP_ADDRESS;
 }
 
 /**
@@ -519,13 +451,11 @@ function _getLocalIpAddress(platform)
  * @returns {string} tag
  */
 
-function _getXmlTag(content, tagName)
-{
-  var tag;
-  var pattern = new RegExp('<' + tagName + '([\\s\\S]*?)>', 'gi');
-  var result = pattern.exec(content);
-  if (result)
-  {
+function _getXmlTag(content, tagName) {
+  let tag;
+  const pattern = new RegExp(`<${tagName}([\\s\\S]*?)>`, 'gi');
+  const result = pattern.exec(content);
+  if (result) {
     tag = result[0];
   }
 
@@ -541,13 +471,11 @@ function _getXmlTag(content, tagName)
  * @returns {string} attrValue - Attribute value
  */
 
-function _getXmlAttrValue(tag, attr)
-{
-  var attrValue;
-  var pattern = new RegExp(attr + '=["](.*?)["]', 'gi');
-  var result = pattern.exec(tag);
-  if (result && result[1])
-  {
+function _getXmlAttrValue(tag, attr) {
+  let attrValue;
+  const pattern = new RegExp(`${attr}=["](.*?)["]`, 'gi');
+  const result = pattern.exec(tag);
+  if (result && result[1]) {
     attrValue = result[1];
   }
 
@@ -564,21 +492,17 @@ function _getXmlAttrValue(tag, attr)
  * @returns {string} newTag
  */
 
-function _setXmlAttrValue(tag, attr, value)
-{
-  var newTag;
-  var newAttr;
-  var pattern = new RegExp(attr + '=["](.*?)["]', 'gi');
-  var result = pattern.exec(tag);
-  if (result)
-  {
+function _setXmlAttrValue(tag, attr, value) {
+  let newTag;
+  let newAttr;
+  const pattern = new RegExp(`${attr}=["](.*?)["]`, 'gi');
+  const result = pattern.exec(tag);
+  if (result) {
     newAttr = result[0].replace(result[1], value);
     newTag = tag.replace(result[0], newAttr);
-  }
-  else
-  {
+  } else {
     // add new attribute at the end, assume tag ends with '>'
-    newTag = tag.substr(0, tag.length - 1) + ' ' + attr + '="' + value + '">';
+    newTag = `${tag.substr(0, tag.length - 1)} ${attr}="${value}">`;
   }
 
   return newTag;
@@ -593,13 +517,11 @@ function _setXmlAttrValue(tag, attr, value)
  * @returns {string} text
  */
 
-function _getXmlNodeText(content, tag)
-{
-  var text;
-  var pattern = new RegExp('<' + tag + '([\\s\\S]*?)>(.*?)<\\/' + tag + '>', 'gi');
-  var result = pattern.exec(content);
-  if (result)
-  {
+function _getXmlNodeText(content, tag) {
+  let text;
+  const pattern = new RegExp(`<${tag}([\\s\\S]*?)>(.*?)<\\/${tag}>`, 'gi');
+  const result = pattern.exec(content);
+  if (result) {
     text = result[2];
   }
 
@@ -617,22 +539,18 @@ function _getXmlNodeText(content, tag)
  * @returns {string || null} tag
  */
 
-function _getXmlTagWithAttrValue(content, tagName, attr, value)
-{
-  var tag;
-  var attrValue;
-  var result;
-  var pattern = new RegExp('<' + tagName + '([\\s\\S]*?)>', 'gi');
+function _getXmlTagWithAttrValue(content, tagName, attr, value) {
+  let tag;
+  let attrValue;
+  let result;
+  const pattern = new RegExp(`<${tagName}([\\s\\S]*?)>`, 'gi');
 
-  do
-  {
+  do {
     result = pattern.exec(content);
-    if (result)
-    {
+    if (result) {
       tag = result[0];
       attrValue = _getXmlAttrValue(tag, attr);
-      if (attrValue && attrValue == value)
-      {
+      if (attrValue && attrValue === value) {
         return tag;
       }
     }
