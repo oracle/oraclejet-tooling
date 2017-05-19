@@ -1,6 +1,6 @@
 {
   "name": "oraclejet-tooling",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -44,5 +44,5 @@
     "load-grunt-configs": "^1.0.0",
     "load-grunt-tasks": "^3.5.2"
   },
-  "jetdocversion": "300"    
+  "jetdocversion": "310"    
 }
