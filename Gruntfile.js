@@ -17,9 +17,9 @@ module.exports = function (grunt) {
     },
     pkg: grunt.file.readJSON("package.json"),
     build_urls: grunt.file.readJSON("buildconf.json"),
-    jet_version_token:'3.1.0',
-    jet_doc_version_token:'310',
-    version_token:'3.1.0',
+    jet_version_token:'3.2.0',
+    jet_doc_version_token:'320',
+    version_token:'3.2.0',
     current_year_token: '2017'    
   }
   var configs = require('load-grunt-configs')(grunt, options);

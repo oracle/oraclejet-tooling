@@ -18,7 +18,7 @@ let ojet = module.exports = {};
 /**
  * Expose libraries
  */
-['config', 'build', 'serve'].forEach(function(name)
+['config', 'build', 'serve', 'clean', 'strip'].forEach(function(name)
 {
   ojet[name] = require('./lib/' + name);
 });
