@@ -1,6 +1,6 @@
 {
-  "name": "oraclejet-tooling",
-  "version": "3.2.0",
+  "name": "@oracle/oraclejet-tooling",
+  "version": "4.0.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -36,13 +36,7 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.11.0",
-    "grunt-eslint": "^19.0.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "load-grunt-configs": "^1.0.0",
-    "load-grunt-tasks": "^3.5.2"
+    "eslint": "~3.19.0"
   },
-  "jetdocversion": "320"
+  "jetdocversion": "400"    
 }

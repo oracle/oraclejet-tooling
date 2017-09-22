@@ -53,6 +53,7 @@ module.exports =
       content = fs.readFileSync(indexHtmlPath, 'utf-8');
 
       content = _addPlatformStyleClasses(content, platform);
+      content = _updateCspGapReady(content);
       if (_isLiveReloadEnabled()) {
         content = _updateCspForLiveReload(content, platform);
         content = _addLiveReloadElement(content, platform);
@@ -177,16 +178,16 @@ function _addPlatformStyleClasses(content, platform) {
  */
 function _addPlatformStyleClassesIfMissing(classStr, classesToAdd) {
   const classes = (classesToAdd instanceof Array) ? classesToAdd : [classesToAdd];
-
+  let newClassStr = classStr;
   for (let i = 0; i < classes.length; i++) {
-    if (classStr.indexOf(classes[i]) < 0) {
-      if (classStr.length > 0) {
-        classStr += ' ';
+    if (newClassStr.indexOf(classes[i]) < 0) {
+      if (newClassStr.length > 0) {
+        newClassStr += ' ';
       }
-      classStr += classes[i];
+      newClassStr += classes[i];
     }
   }
-  return classStr;
+  return newClassStr;
 }
 
 /**
@@ -260,6 +261,23 @@ function _injectCspRule(content, category, cspRule) {
 }
 
 /**
+ * ## _updateCspGapReady
+ * Updates Content Security Policy for livereload
+ *
+ * @private
+ * @param {string} content      - Original content
+ * @returns {string} newContent - Updated content
+ */
+
+function _updateCspGapReady(content) {
+  let newContent = content;
+  // Must have for iOS10
+  newContent = _injectCspRule(newContent, 'connect-src', 'ws: *');
+  newContent = _injectCspRule(newContent, 'default-src', 'gap://ready');
+  return newContent;
+}
+
+/**
  * ## _updateCspForLiveReload
  * Updates Content Security Policy for livereload
  *
@@ -283,10 +301,6 @@ function _updateCspForLiveReload(content, platform) {
   }
 
   newContent = _injectCspRule(newContent, 'script-src', liveReloadSrc);
-
-  // Must have for iOS10
-  newContent = _injectCspRule(newContent, 'connect-src', 'ws: *');
-  newContent = _injectCspRule(newContent, 'default-src', 'gap://ready');
 
   return newContent;
 }

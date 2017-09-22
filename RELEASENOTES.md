@@ -1,5 +1,8 @@
 ## Release Notes for oraclejet-tooling ##
 
+### 4.0.0
+* Moved module into @oracle scope, changing the name to @oracle/oraclejet-tooling
+
 ### 3.2.0
 * No changes
 
