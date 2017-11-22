@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
