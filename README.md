@@ -6,7 +6,7 @@ This tooling API contains methods to build and serve Oracle JET web and hybrid m
 This is an open source project maintained by Oracle Corp.
 
 ## Installation
-This module will be automatically installed when you scaffold a web or hybrid mobile app following the [Oracle JET Developers Guide](http://docs.oracle.com/middleware/jet420/jet/).
+This module will be automatically installed when you scaffold a web or hybrid mobile app following the [Oracle JET Developers Guide](http://www.oracle.com/pls/topic/lookup?ctx=jet420).
 
 ## [Contributing](https://github.com/oracle/oraclejet-tooling/tree/master/CONTRIBUTING.md)
 Oracle JET is an open source project.  Pull Requests are currently not being accepted. See 
