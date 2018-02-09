@@ -40,5 +40,5 @@
   "devDependencies": {
     "eslint": "~3.19.0"
   },
-  "jetdocversion": "410"
+  "jetdocversion": "420"
 }
