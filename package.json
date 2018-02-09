@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -22,7 +22,7 @@
     "lodash.union": "^4.6.0",
     "lodash.mergewith": "^4.6.0",
     "requirejs": "^2.2.0",
-    "uglify-js": "^2.7.4",
+    "uglify-es": "^3.3.5",
     "xmldom": "^0.1.27",
     "gaze": "^1.1.2",
     "connect": "^3.5.0",

@@ -1,4 +1,4 @@
-# @oracle/oraclejet-tooling 4.1.1
+# @oracle/oraclejet-tooling 4.2.0
 
 ## About the tooling API
 This tooling API contains methods to build and serve Oracle JET web and hybrid mobile apps. It is intended to be used with task running tools such as grunt or gulp. The APIs can also be invoked directly. 
@@ -14,5 +14,5 @@ Oracle JET is an open source project.  Pull Requests are currently not being acc
 for details.
 
 ## [License](https://github.com/oracle/oraclejet-tooling/tree/master/LICENSE.md)
-Copyright (c) 2014, 2017 Oracle and/or its affiliates
+Copyright (c) 2014, 2018 Oracle and/or its affiliates
 The Universal Permissive License (UPL), Version 1.0
