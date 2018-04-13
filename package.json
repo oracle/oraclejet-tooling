@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -23,7 +23,6 @@
     "lodash.mergewith": "^4.6.0",
     "requirejs": "^2.2.0",
     "uglify-es": "^3.3.5",
-    "xmldom": "^0.1.27",
     "gaze": "^1.1.2",
     "connect": "^3.5.0",
     "connect-livereload": "^0.6.0",
@@ -40,5 +39,5 @@
   "devDependencies": {
     "eslint": "~3.19.0"
   },
-  "jetdocversion": "420"
+  "jetdocversion": "500"
 }
