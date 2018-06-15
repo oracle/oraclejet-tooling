@@ -8,23 +8,37 @@
  * *This is the description. See more at [Oracle JET](http://oraclejet.org) website.*
  */
 
-"use strict";
+'use strict';
 
 /**
  * Expose ojet object
  */
-let ojet = module.exports = {};
+const ojet = module.exports;
+
+const CONSTANTS = require('./lib/constants');
 
 /**
  * Expose libraries
  */
-['config', 'build', 'serve', 'clean', 'strip'].forEach(function(name)
-{
-  ojet[name] = require('./lib/' + name);
+[
+  CONSTANTS.API_TASKS.ADD,
+  'build',
+  'clean',
+  'config',
+  CONSTANTS.API_TASKS.CONFIGURE,
+  CONSTANTS.API_TASKS.LIST,
+  CONSTANTS.API_TASKS.PUBLISH,
+  CONSTANTS.API_TASKS.REMOVE,
+  CONSTANTS.API_TASKS.SEARCH,
+  'serve',
+  'strip'
+].forEach((name) => {
+  ojet[name] = require('./lib/' + name); // eslint-disable-line
 });
 
 /**
  * Expose other objects
  */
 ojet.package = require('./package.json');
+
 ojet.version = ojet.package.version;
