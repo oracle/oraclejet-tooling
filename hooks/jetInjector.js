@@ -111,7 +111,9 @@ function _getIndexHtmlPath(platform, external) {
   const prefix = external ? `${process.env.cordovaDirectory}/` : '';
 
   if (platform === 'android') {
+    const android700Path = `${prefix}platforms/android/app/src/main/assets/www/`;
     root = `${prefix}platforms/android/assets/www/`;
+    root = fs.existsSync(root) ? root : android700Path;
   } else if (platform === 'ios') {
     root = `${prefix}platforms/ios/www/`;
   } else if (platform === 'windows') {

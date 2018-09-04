@@ -2,40 +2,30 @@
   Copyright (c) 2015, 2018, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
+/**
+  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
+  The Universal Permissive License (UPL), Version 1.0
+*/
 'use strict';
 
 process.env = 'test';
 
-const CONSTANTS = require('../lib/constants');
-let fs = require('fs');
+const CONSTANTS = require('@oracle/oraclejet-tooling/lib/constants');
+let fs = require('fs-extra');
 let assert = require('assert');
-let ojet = require('../oraclejet-tooling');
-
+let ojet = require('@oracle/oraclejet-tooling');
+const valid = require('@oracle/oraclejet-tooling/lib/validations');
+const util = require('@oracle/oraclejet-tooling/lib/util');
 let cordovaDir = CONSTANTS.CORDOVA_DIRECTORY;
 
 describe('Serve Tests: ojet.serve.<>', function ()
-{
-  before(() =>
-  {
-    ojet.serve.exposePrivateFunctions();
-    //create Cordova directory
-    
-    if (!fs.existsSync(cordovaDir)) 
-    {
-      fs.mkdirSync(cordovaDir)
-    }
-  });
-
-  after(() => 
-  {
-    fs.rmdirSync(cordovaDir);
-  });
-  
+{ 
   it ('validatePlatform - android', () =>
   {
     assert.doesNotThrow(() =>
     {
-      ojet.serve.validatePlatform('android')
+      ojet.config.loadOraclejetConfig("android");
+      valid.platform('android');
     });
   });
 
@@ -43,7 +33,8 @@ describe('Serve Tests: ojet.serve.<>', function ()
   {
     assert.doesNotThrow(() =>
     {
-      ojet.serve.validatePlatform('ios')
+      ojet.config.loadOraclejetConfig("ios");
+      valid.platform('ios')
     });
   });
 
@@ -51,15 +42,8 @@ describe('Serve Tests: ojet.serve.<>', function ()
   {
     assert.doesNotThrow(() =>
     {
-      ojet.serve.validatePlatform('web')
-    });
-  });
-
-  it ('validatePlatform - browser', () =>
-  {
-    assert.doesNotThrow(() =>
-    {
-      ojet.serve.validatePlatform('browser')
+      ojet.config.loadOraclejetConfig("web");
+      valid.platform('web');
     });
   });
 
@@ -67,53 +51,46 @@ describe('Serve Tests: ojet.serve.<>', function ()
   {
     assert.throws(() =>
     {
-      ojet.serve.validatePlatform('SpacePlatform')
+      ojet.config.loadOraclejetConfig("SpacePlatform");
+      valid.platform('SpacePlatform')
     });
-  });
-
-  it ('setDefaultPlatform', () =>
-  {
-    assert(ojet.serve.setDefaultPlatform() == 'web' || 'browser');
   });
 
   it ('validateBuildType - not filled = > debug', () =>
   {
-    assert(ojet.serve.validateBuildType() == 'debug');
+    assert(valid.buildType({buildType: undefined}) == 'dev');
   });
 
   it ('validateBuildType - release = false', () =>
   {
-    assert(ojet.serve.validateBuildType(undefined, false) == 'debug');
+    assert(valid.buildType({buildType: 'dev'}) == 'dev');
   });
   
   it ('validateBuildType - relese = true', () =>
   {
-    assert(ojet.serve.validateBuildType(undefined, true) == 'release');
+     assert(valid.buildType({buildType: 'release'}) == 'release');
   });
 
-  it ('validateType - boolean', () =>
+    it ('validateType - String', () =>
   {
-    assert(ojet.serve.validateType('Boolean', true, 'boolean') == true);
+    assert.doesNotThrow(() =>
+    {
+      util.validateType('String', "test string", 'string');
+    });
+  });
+    it ('validateType - boolean', () =>
+  {
+    assert.doesNotThrow(() =>
+    {
+      util.validateType('boolean', true, 'boolean');
+    });
   });
 
-  it ('validateType - string', () =>
+  it ('validateType - number', () =>
   {
-    assert(ojet.serve.validateType('String', 'someString', 'string') == true);
-  });
-
-  it ('cdToCordovaDirectory', () =>
-  {
-    let oldPath = process.cwd();
-    ojet.serve.cdToCordovaDirectory()
-    let newPath = process.cwd();
-    assert(oldPath + '/' + cordovaDir == newPath);
-  });
-
-  it ('cdFromCordovaDirectory', () =>
-  {
-    let oldPath = process.cwd();
-    ojet.serve.cdFromCordovaDirectory()
-    let newPath = process.cwd();
-    assert(oldPath == newPath + '/' + cordovaDir);
+    assert.doesNotThrow(() =>
+    {
+      util.validateType('Number', 8801, 'number');
+    });
   });
 });
