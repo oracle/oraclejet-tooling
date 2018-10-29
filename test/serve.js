@@ -47,15 +47,6 @@ describe('Serve Tests: ojet.serve.<>', function ()
     });
   });
 
-  it ('validatePlatform - non-existing one', () =>
-  {
-    assert.throws(() =>
-    {
-      ojet.config.loadOraclejetConfig("SpacePlatform");
-      valid.platform('SpacePlatform')
-    });
-  });
-
   it ('validateBuildType - not filled = > debug', () =>
   {
     assert(valid.buildType({buildType: undefined}) == 'dev');

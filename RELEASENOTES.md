@@ -1,5 +1,8 @@
 ## Release Notes for oraclejet-tooling ##
 
+### 6.0.0
+* No changes
+
 ### 5.2.0
 * No changes
 
@@ -41,4 +44,3 @@
 * Allow multiple themes to be included in a built app
 * Grunt serve to specific iOS emulator fails
 * no-build option missing from grunt serve
->>>>>>> 0f5544d... Merge branch 'master' into ListPacks
