@@ -1,5 +1,5 @@
 /**
-  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
+  Copyright (c) 2015, 2019, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
 /**
@@ -21,6 +21,11 @@ describe("Hooks Test", function ()
   it("before_build hook", function(){
     hooks('before_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
     assert(process.env, "before_build");
+  });
+
+  it("after_component_build hook", function(){
+    hooks('after_component_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
+    assert(process.env, "after_component_build");
   });
 
   it("after_build hook", function(){
