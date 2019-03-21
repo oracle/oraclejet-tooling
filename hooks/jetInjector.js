@@ -319,7 +319,7 @@ function _getConfigXmlPath(platform) {
   let configXmlPath;
 
   if (platform === 'android') {
-    configXmlPath = 'platforms/android/res/xml';
+    configXmlPath = 'platforms/android/app/src/main/res/xml';
   } else if (platform === 'ios') {
     configXmlPath = `platforms/ios/${_getAppName()}`;
   } else if (platform === 'windows') {
