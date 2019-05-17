@@ -22,6 +22,7 @@ const CONSTANTS = require('./lib/constants');
  */
 [
   CONSTANTS.API_TASKS.ADD,
+  CONSTANTS.API_TASKS.ADDSASS,
   'build',
   'clean',
   'config',

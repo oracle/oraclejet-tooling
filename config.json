@@ -1,0 +1,3 @@
+{"eslintDirs": ["lib", "hooks"],
+ "eslintFilter": ["!**/parser/**"],
+ "fixup": ["package.json"]}
