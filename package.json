@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -24,7 +24,7 @@
     "requirejs": "^2.2.0",
     "uglify-es": "^3.3.5",
     "gaze": "^1.1.2",
-    "js-yaml":"~3.13.0",
+    "js-yaml": "~3.13.0",
     "connect": "^3.5.0",
     "connect-livereload": "^0.6.0",
     "tiny-lr": "^1.0.3",
