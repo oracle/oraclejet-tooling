@@ -32,6 +32,7 @@ const CONSTANTS = require('./lib/constants');
   CONSTANTS.API_TASKS.PUBLISH,
   CONSTANTS.API_TASKS.REMOVE,
   CONSTANTS.API_TASKS.SEARCH,
+  CONSTANTS.API_TASKS.ADDTYPESCRIPT,
   'serve',
   'strip'
 ].forEach((name) => {

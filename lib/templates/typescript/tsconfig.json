@@ -1,0 +1,26 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "allowJs": true,
+        "alwaysStrict": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "target": "es5",
+        "noEmitOnError": true,
+        "module": "amd",
+        "checkJs": false,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "moduleResolution": "node",
+        "paths": {
+            "ojs/*":["./node_modules/@oracle/oraclejet/dist/types/*"],
+            "knockout": ["./node_modules/knockout"]
+        },
+        "lib": ["dom","es5","scripthost", "es2015.core","es2015.collection","es2015","esnext.asynciterable"]
+    },
+    "include": [
+        "./src/ts/**/*"
+    ]
+}

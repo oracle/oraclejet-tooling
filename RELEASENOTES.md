@@ -1,21 +1,6 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 7.1.1
-* Updated to use newer svgo due to bug
-
-### 7.1.0
-* No changes
-
-### 7.0.0
-* No changes
-
-### 6.2.0
-* No changes
-
-### 6.1.0
-* No changes
-
-### 6.0.0
+### 7.2.0
 * No changes
 
 ### 5.2.0
