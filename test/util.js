@@ -2,30 +2,31 @@
   Copyright (c) 2015, 2019, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
-/**
-  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
-  The Universal Permissive License (UPL), Version 1.0
-*/
-var env = process.env,
-    assert = require('assert'),
-    ojet = require('@oracle/oraclejet-tooling'),
-    path = require('path');
-    const util = require('@oracle/oraclejet-tooling/lib/util');
+var assert = require('assert');
+var path = require('path');
+var ojetUtil = require('../lib/util');
+var _ = require('lodash');
 
-describe("Util Test", function ()
-{
-  before(function(){
+const util = require('../lib/util');
 
-  });  
-
-  it("templatePath", function(){
+describe("Util Test", () => {
+  it("should have templatePath", () => {
     var template = util.templatePath('');
-    assert(template === path.resolve("node_modules/@oracle/oraclejet-tooling"));
+    assert(template === path.resolve("../oraclejet-tooling"));
   });
 
-  it("destPath", function(){
+  it("should have destPath", () => {
     var template = util.destPath('test1');
     assert(template === path.resolve("test1"));
   });
-});
 
+  describe("Config Test", () => {
+    it("should expect false for isCCaSassFile", () => {
+      assert(ojetUtil.isCcaSassFile('testApp/staged-themes/alta/web/alta.css') === false);
+    });
+  
+    it("should expect true for isCCaSassFile", () => {
+      assert(ojetUtil.isCcaSassFile('jet-composites/mytheme.css') == true);
+    });
+  });
+});

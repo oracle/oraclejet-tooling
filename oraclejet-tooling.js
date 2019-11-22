@@ -29,6 +29,7 @@ const CONSTANTS = require('./lib/constants');
   CONSTANTS.API_TASKS.CONFIGURE,
   CONSTANTS.API_TASKS.CREATE,
   CONSTANTS.API_TASKS.LIST,
+  CONSTANTS.API_TASKS.ADDPCSS,  
   CONSTANTS.API_TASKS.PUBLISH,
   CONSTANTS.API_TASKS.REMOVE,
   CONSTANTS.API_TASKS.SEARCH,
@@ -39,9 +40,15 @@ const CONSTANTS = require('./lib/constants');
   ojet[name] = require('./lib/' + name); // eslint-disable-line
 });
 
+// Instantiate Package class
+const PackageClass = require('./lib/' + CONSTANTS.API_TASKS.PACKAGE);
+const packageInstance = new PackageClass();
+// Expose ojet.package()
+ojet[CONSTANTS.API_TASKS.PACKAGE] = packageInstance.package;
+
 /**
  * Expose other objects
  */
-ojet.package = require('./package.json');
+ojet.package.json = require('./package.json');
 
 ojet.version = ojet.package.version;
