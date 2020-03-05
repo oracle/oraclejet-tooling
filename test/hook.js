@@ -1,58 +1,39 @@
 /**
-  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
+  Copyright (c) 2015, 2020, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
-/**
-  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
-  The Universal Permissive License (UPL), Version 1.0
-*/
-var env = process.env,
-    assert = require('assert'),
-    ojet = require('@oracle/oraclejet-tooling'),
-    path = require('path');
-    const hooks = require('@oracle/oraclejet-tooling/lib/hookRunner');
+var assert = require('assert');
+var hooks = require('../lib/hookRunner');
 
-describe("Hooks Test", function ()
-{
-  before(function(){
+const hookList = [
+  'after_app_create',
+  'after_app_restore',
+  'after_build',
+  'after_component_build',
+  'after_component_create',
+  'after_serve',
+  'before_build',
+  'before_hybrid_build',
+  'before_optimize',
+  'before_release_build',
+  'before_serve'
+];
+
+describe("Hooks Test", () => {
+  before(() => {
     process.env.NODE_ENV = 'test';
   });  
 
-  it("before_build hook", function(){
-    hooks('before_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "before_build");
+  hookList.forEach((element) => {
+    it(`should have a ${element} hook`, () => {
+      hooks(element, {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
+      assert(process.env, element);
+    });
   });
 
-  it("after_build hook", function(){
-    hooks('after_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "after_build");
-  });
-
-  it("before_hybrid_build hook", function(){
-    hooks('before_hybrid_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "before_hybrid_build");
-  });
-  
-  it("before_release_build hook", function(){
-    hooks('before_release_build', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "before_release_build");
-  });
-  
-  it("before_serve hook", function(){
-    hooks('before_serve', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "before_serve");
-  });
-  
-  it("after_serve hook", function(){
-    hooks('after_serve', {platform: "web", opts: {theme: "alta"}, buildType: "dev"});
-    assert(process.env, "after_serve");
-  });
-
-  it ('invalid hooks does not terminate', () =>
-  {
-    assert.doesNotThrow(() =>
-    {
-      hooks('bxefore_build');
+  it ('should not terminate invalid hooks', () => {
+    assert.doesNotThrow(() => {
+      hooks('before_build');
     });
   });
 });

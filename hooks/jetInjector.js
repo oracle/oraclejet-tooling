@@ -1,5 +1,5 @@
 /**
-  Copyright (c) 2015, 2018, Oracle and/or its affiliates.
+  Copyright (c) 2015, 2020, Oracle and/or its affiliates.
   The Universal Permissive License (UPL), Version 1.0
 */
 'use strict';
@@ -319,7 +319,7 @@ function _getConfigXmlPath(platform) {
   let configXmlPath;
 
   if (platform === 'android') {
-    configXmlPath = 'platforms/android/res/xml';
+    configXmlPath = 'platforms/android/app/src/main/res/xml';
   } else if (platform === 'ios') {
     configXmlPath = `platforms/ios/${_getAppName()}`;
   } else if (platform === 'windows') {
