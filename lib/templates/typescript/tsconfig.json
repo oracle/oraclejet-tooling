@@ -1,20 +1,20 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es6",
         "module": "amd",
         "moduleResolution": "node",
-        "noEmitHelpers": true,
-        "noEmitOnError": true,
-        "baseUrl": ".",
+        "jsx": "react",
+        "jsxFactory": "h",
+        "lib": ["es2015", "dom", "esnext.asynciterable"],
+        "typeRoots": ["./node_modules/@oracle/oraclejet/dist/types", "./node_modules/@types"],
         "paths": {
-            "ojs/*":["./node_modules/@oracle/oraclejet/dist/types/*"],
-            "knockout": ["./node_modules/knockout"]
+            "ojs/*": ["./node_modules/@oracle/oraclejet/dist/types/*"]
         },
-        "lib": ["es2015", "dom", "esnext.asynciterable"]
+        "declaration": true,
+        "noEmitOnError": true,
+        "experimentalDecorators": true
     },
-    "include": [
-        "./src/ts/**/*",
-        "./node_modules/@oracle/oraclejet/dist/types/requirejs-plugins.d.ts"
-    ]
+    "include": ["./src/ts/**/*"]
 }
