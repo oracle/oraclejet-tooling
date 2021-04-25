@@ -1,6 +1,6 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 10.0.0
+### 10.1.0
 * No changes
 
 ### 5.2.0
