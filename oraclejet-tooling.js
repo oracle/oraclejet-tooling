@@ -37,6 +37,7 @@ const CONSTANTS = require('./lib/constants');
   CONSTANTS.API_TASKS.SEARCH,
   CONSTANTS.API_TASKS.ADDTYPESCRIPT,
   CONSTANTS.API_TASKS.ADDPWA,
+  CONSTANTS.API_TASKS.ADDWEBPACK,
   'serve',
   'strip'
 ].forEach((name) => {
