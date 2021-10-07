@@ -7,7 +7,7 @@
 /**
  * # Tooling for Oracle JET apps
  * - - -
- * *This is the description. See more at [Oracle JET](http://oraclejet.org) website.*
+ * *This is the description. See more at [Oracle JET](http://www.oracle.com/jet) website.*
  */
 
 'use strict';

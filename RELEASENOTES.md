@@ -1,6 +1,6 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 11.0.0
+### 11.1.0
 * oraclejet-tooling now requires node 12.21 or later
 
 ### 5.2.0
