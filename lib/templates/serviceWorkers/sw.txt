@@ -1,10 +1,5 @@
 const CACHE_NAME = '@AppName@';
-const resourcesToCache = [
-  'index.html',
-  'manifest.json',
-  'js/',
-  'css/'
-];
+const resourcesToCache = ['index.html', 'manifest.json', 'js/', 'css/'];
 
 // install service worker and cache resources defined in resourcesToCache
 self.addEventListener('install', (event) => {
