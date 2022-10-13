@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "13.0.0",
+  "version": "13.1.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -23,7 +23,7 @@
     "lodash.union": "~4.6.0",
     "lodash.mergewith": "~4.6.2",
     "requirejs": "~2.3.6",
-    "terser": "~5.8.0",
+    "terser": "~5.14.2",
     "gaze": "~1.1.2",
     "express": "~4.17.1",
     "connect-livereload": "~0.6.0",
