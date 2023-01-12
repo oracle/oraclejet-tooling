@@ -1,7 +1,7 @@
 {
   "name": "@pack@",
   "version": "1.0.0",
-  "jetVersion": "13.1.0",
+  "jetVersion": "14.0.0",
   "type": "pack",
   "displayName": "A user friendly, translatable name of the pack.",
   "description": "A translatable high-level description for the pack.",
