@@ -8,7 +8,7 @@
         "moduleResolution": "node",
         "jsx": "react-jsx",
         "jsxImportSource": "preact",
-        "lib": ["es2020", "dom", "esnext.asynciterable"],
+        "lib": ["es2021", "dom", "esnext.asynciterable"],
         "typeRoots": ["./node_modules/@oracle/oraclejet/dist/types", "./node_modules/@types"],
         "paths": {
             "ojs/*": ["./node_modules/@oracle/oraclejet/dist/types/*"],
