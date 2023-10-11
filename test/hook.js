@@ -21,7 +21,6 @@ const hookList = [
   'before_app_typescript',
   'before_build',
   'before_component_typescript',
-  'before_hybrid_build',
   'before_injection',
   'before_component_optimize',
   'before_component_package',
