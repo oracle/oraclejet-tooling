@@ -1,6 +1,6 @@
 {
   "name": "@oracle/oraclejet-tooling",
-  "version": "16.0.0",
+  "version": "16.1.0",
   "license": "UPL-1.0",
   "description": "Programmatic API to build and serve Oracle JET web and mobile applications",
   "keywords": [
@@ -9,6 +9,10 @@
   "main": "oraclejet-tooling.js",
   "files": [
     "RELEASENOTES.md",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE.txt",
+    "THIRDPARTYLICENSE.txt",
     "hooks",
     "lib"
   ],
@@ -28,7 +32,7 @@
     "requirejs": "~2.3.6",
     "terser": "~5.19.2",
     "gaze": "~1.1.2",
-    "express": "~4.17.1",
+    "express": "4.19.2",
     "connect-livereload": "~0.6.0",
     "tiny-lr": "2.0.0",
     "serve-static": "~1.13.0",
