@@ -13,15 +13,10 @@ THIRD-PARTY COMPONENT                                                 LICENSE
 --------------------------------------------------------------------------------
 node_modules/fs-extra/                                                  MIT
 node_modules/glob/                                                      ISC
-node_modules/lodash.difference/                                         MIT
-node_modules/lodash.escaperegexp/                                       MIT
-node_modules/lodash.isfunction/                                         MIT
-node_modules/lodash.remove/                                             MIT
-node_modules/lodash.union/                                              MIT
 node_modules/lodash.mergewith/                                          MIT
 node_modules/requirejs/                                                 MIT
 node_modules/terser/                                                BSD-2-Clause
-node_modules/gaze/                                                      MIT
+node_modules/chokidar/                                                  MIT
 node_modules/connect/                                                   MIT
 node_modules/connect-livereload/                                        MIT
 node_moduels/tiny-lr/                                                   MIT

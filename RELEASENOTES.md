@@ -1,6 +1,7 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 17.1.0
+### 18.0.0
+* Switch to chokidar from gaze
 
 ### 11.0.0
 * oraclejet-tooling now requires node 12.21 or later
