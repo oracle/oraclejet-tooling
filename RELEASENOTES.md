@@ -1,6 +1,6 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 18.0.0
+### 18.1.0
 * Switch to chokidar from gaze
 
 ### 11.0.0
