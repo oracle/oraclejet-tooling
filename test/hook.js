@@ -6,6 +6,7 @@
 */
 const assert = require('assert');
 const hooks = require('../lib/hookRunner');
+const constants = require('../lib/constants');
 
 const hookList = [
   'after_app_create',
@@ -40,7 +41,7 @@ describe('Hooks Test', () => {
 
   hookList.forEach((element) => {
     it(`should have a ${element} hook`, () => {
-      hooks(element, {platform: 'web', opts: {theme: 'alta'}, buildType: 'dev'});
+      hooks(element, {platform: constants.SUPPORTED_WEB_PLATFORM, opts: {theme: 'alta'}, buildType: 'dev'});
       assert(process.env, element);
     });
   });
