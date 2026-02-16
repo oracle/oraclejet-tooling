@@ -1,7 +1,26 @@
 ## Release Notes for oraclejet-tooling ##
 
-### 19.0.0
+### 20.0.0
+* Updated glob version to 12.0.0
+* Updated form-data version to 4.0.5
+
+### 19.0.1
+* Updated glob version to 12.0.0
+
+### 18.1.1
+* Updated glob version to 12.0.0
+
+### 18.0.1
+* Updated glob version to 12.0.0
+
+### 18.0.0
 * Switch to chokidar from gaze
+
+### 17.1.1
+* Updated glob version to 12.0.0
+
+### 17.0.1
+* Updated glob version to 12.0.0
 
 ### 11.0.0
 * oraclejet-tooling now requires node 12.21 or later

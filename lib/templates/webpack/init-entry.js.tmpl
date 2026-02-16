@@ -1,0 +1,6 @@
+import { loadTranslationBundles } from 'bootstrap';
+
+(async () => {
+  await loadTranslationBundles();
+  import('./__ROOT_MODULE__');
+})();
