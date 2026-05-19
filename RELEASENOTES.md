@@ -1,14 +1,29 @@
 ## Release Notes for oraclejet-tooling ##
 
+### 20.1.0
+* Updated svgo version to 4.0.1
+
+### 20.0.1
+* Updated svgo version to 4.0.1
+
 ### 20.0.0
 * Updated glob version to 12.0.0
 * Updated form-data version to 4.0.5
 
+### 19.0.2
+* Updated svgo version to 4.0.1
+
 ### 19.0.1
 * Updated glob version to 12.0.0
 
+### 18.1.2
+* Updated svgo version to 4.0.1
+
 ### 18.1.1
 * Updated glob version to 12.0.0
+
+### 18.0.2
+* Updated svgo version to 4.0.1
 
 ### 18.0.1
 * Updated glob version to 12.0.0
