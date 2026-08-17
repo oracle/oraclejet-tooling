@@ -1,4 +1,4 @@
-# @oracle/oraclejet-tooling 20.1.0
+# @oracle/oraclejet-tooling 21.0.0
 
 ## About the tooling API
 This tooling API contains methods to build and serve Oracle JET web apps. It is intended to be used with task running tools such as grunt or gulp. The APIs can also be invoked directly. 
