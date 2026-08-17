@@ -41,7 +41,7 @@ describe('Hooks Test', () => {
 
   hookList.forEach((element) => {
     it(`should have a ${element} hook`, () => {
-      hooks(element, {platform: constants.SUPPORTED_WEB_PLATFORM, opts: {theme: 'alta'}, buildType: 'dev'});
+      hooks(element, {platform: constants.SUPPORTED_WEB_PLATFORM, opts: {theme: 'redwood'}, buildType: 'dev'});
       assert(process.env, element);
     });
   });
