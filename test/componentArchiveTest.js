@@ -243,7 +243,7 @@ describe('Exchange component archive safety', () => {
 
     await assert.rejects(
       () => componentArchive.installArchive(archivePath, path.join(tempDir, 'jet_components', 'demo-card'), false),
-      /duplicate entry/
+      /duplicate entry/i
     );
   });
 

@@ -1,5 +1,11 @@
 ## Release Notes for oraclejet-tooling ##
 
+### 21.1.0
+* Updated svgo version to 4.0.2 to address CVE-2026-73650.
+
+### 21.0.1
+* Updated svgo version to 4.0.2 to address CVE-2026-73650.
+
 ### 21.0.0
 * Hardened the vendored DOM parser against prototype pollution when copying object properties.
 * Removed unsupported legacy theme staging, renaming, Sass, SVG, and webpack fallback handling. The default theme remains redwood, and stable remains supported when configured.
@@ -11,6 +17,9 @@
 * Security tightening: Reference component npm installs derived from downloaded Exchange metadata now require explicit approval in interactive environments and are blocked by default in non-interactive environments unless explicitly allowed. These installs now also validate package metadata and use `--ignore-scripts`.
 * Security tightening: programmatic `ojet.serve()` watch configuration now rejects unknown string commands. Built-in commands such as `compileSass` and `copyThemes` may still be strings, but custom commands must use structured command objects and are run without shell interpretation, for example `commands: [{ cmd: 'npm', args: ['run', 'generate-docs'] }]` instead of `commands: ['npm run generate-docs']`.
 * Security tightening: serve defaults now bind to `127.0.0.1`, and directory listing is disabled unless explicitly enabled through serve/connect options. CLI users can intentionally expose the development server or enable directory listing from a trusted `before_serve` hook by setting `connectOpts.hostname` or `connectOpts.directoryListing`.
+
+### 20.1.4
+* Updated svgo version to 4.0.2 to address CVE-2026-73650.
 
 ### 20.1.3
 * Hardened the vendored DOM parser against prototype pollution when copying object properties.
@@ -29,6 +38,9 @@
 
 ### 20.1.0
 * Updated svgo version to 4.0.1
+
+### 20.0.5
+* Updated svgo version to 4.0.2 to address CVE-2026-73650.
 
 ### 20.0.4
 * Hardened the vendored DOM parser against prototype pollution when copying object properties.
@@ -51,6 +63,9 @@
 ### 20.0.0
 * Updated glob version to 12.0.0
 * Updated form-data version to 4.0.5
+
+### 19.0.6
+* Updated svgo version to 4.0.2 to address CVE-2026-73650.
 
 ### 19.0.5
 * Hardened the vendored DOM parser against prototype pollution when copying object properties.
